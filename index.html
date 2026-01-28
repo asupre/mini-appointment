@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Appointment</title>
+    <link rel="stylesheet" href="css/appointment.css">
+</head>
+<body>
+
+
+    <div class="card">
+    <h3>New Appointment</h3>
+    <div class="form-group">
+        <input type="text" id="patientName" placeholder="Patient Name">
+        
+        <select id="patientStatus">
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+
+        <button id="addBtn">Add Patient</button>
+    </div>
+</div>
+<hr>
+
+    <div class="container">
+    <h2>Appointments Today</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Patient Name</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="appointment-list"></tbody>
+    </table>
+</div>
+
+    <script type="module" src="js/main.js"></script>
+    
+</body>
+</html>
