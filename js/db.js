@@ -3,8 +3,8 @@
  const defaultData = [
     {id: 1, patient: "Coy", status: "Pending"},
     {id: 2, patient: "Ana", status: "Paid"},
-    {id: 3, patient: "Louis", status: "Pending"},
-    {id: 4, patient: "Lito", status: "Paid"}
+    {id: 3, patient: "Louis", status: "Pending"}
+   
 ];
 
 

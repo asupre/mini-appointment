@@ -1,5 +1,7 @@
 import { data, appointments } from "./db.js";
 
+
+/*READ AREA */
 const listOfTable = document.getElementById('appointment-list');
 
 function renderTheAppointment(){
@@ -9,7 +11,7 @@ function renderTheAppointment(){
             <td>${appt.id}</td>
             <td>${appt.patient}</td>
             <td>${appt.status}</td>
-            <td><button>View To See</button></td>
+            <td><button class="delete-btn" data-id="${appt.id}">Delete</button></td>
         
         </tr>`
 
@@ -22,11 +24,13 @@ function renderTheAppointment(){
 
 renderTheAppointment();
 
-let inputElement = document.getElementById('patientName');
+/*END OF READ AREA */
+
+
+/*CREATE AREA */
+const inputElement = document.getElementById('patientName');
 const status = document.getElementById('patientStatus');
 const btn = document.getElementById('addBtn');
-
-
 
 
 function addPatient(){
@@ -56,14 +60,33 @@ btn.addEventListener("click", () => {
     addPatient();
 });
 
-inputElement.addEventListener("keyup", (event) =>{
+inputElement.addEventListener("keydown", (event) =>{
     if(event.key === "Enter"){
         addPatient();
+
     }
 });
 
+/*END OF CREATE AREA */
 
 
+listOfTable.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete-btn")) {
+    const idToDelete = Number(event.target.dataset.id);
+    const index = appointments.findIndex(appt => appt.id === idToDelete);
+
+    if (index > -1) {
+        // 1. Remove from Array
+        appointments.splice(index, 1);
+        
+        // 2. SAVE TO DB (The missing line)
+        data(); 
+
+        // 3. Re-render
+        renderTheAppointment();
+    }
+}
+});
 
 
 
