@@ -71,6 +71,7 @@ inputElement.addEventListener("keydown", (event) =>{
 /*END OF CREATE AREA */
 
 
+/*DELETE BTN LOGIC */
 listOfTable.addEventListener("click", (event) => {
     if (event.target.classList.contains("delete-btn")) {
     const idToDelete = Number(event.target.dataset.id);
@@ -88,8 +89,19 @@ listOfTable.addEventListener("click", (event) => {
     }
 }
 });
+/*END OF DELETE BTN AREA */
+
+
+/*OPEN MODAL LOGIC AREA */
 
 const modal = document.getElementById("container-modal-popup");
+
+const modalId = document.getElementById("modalID");
+const modalName =document.getElementById("modalName");
+const modalStatus = document.getElementById("modalStatus");
+const saveBtn = document.getElementById("saveBtn");
+
+
 
 listOfTable.addEventListener("click", (event) => {
     if(event.target.classList.contains('update-btn')){
@@ -101,5 +113,8 @@ listOfTable.addEventListener("click", (event) => {
         }
 
     }
-})
+});
+
+
+
 
