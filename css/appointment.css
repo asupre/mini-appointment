@@ -1,9 +1,28 @@
-.container-modal{
-    display: none;
+.container-modal {
+    /* 1. Hide it initially */
+    display: none; 
+
+    /* 2. Take it out of the normal flow so it floats */
+    position: fixed; 
+    
+    /* 3. Move top-left corner to the dead center of screen */
+    top: 50%;
+    left: 50%;
+    
+    /* 4. Shift the box back by 50% of its own width/height to center ITSELF */
+    transform: translate(-50%, -50%);
+    
+    /* 5. Styling */
     width: 500px;
-    height: 300px;
+    height: 350px; /* Made it slightly taller for the buttons */
     background-color: aquamarine;
     
+    /* 6. Ensure it sits ON TOP of the table */
+    z-index: 1000;
+    
+    /* Optional: Add a shadow so it looks like it's floating */
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    border-radius: 8px; /* Smooth corners */
 }
 
 .input-modal{

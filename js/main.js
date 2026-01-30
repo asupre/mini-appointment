@@ -109,7 +109,7 @@ listOfTable.addEventListener("click", (event) => {
         const everyIndex = appointments.findIndex(appt => appt.id === update);
         if(everyIndex){
             return modal.style.display = "block";
-
+            
         }
 
     }
