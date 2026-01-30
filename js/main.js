@@ -12,6 +12,7 @@ function renderTheAppointment(){
             <td>${appt.patient}</td>
             <td>${appt.status}</td>
             <td><button class="delete-btn" data-id="${appt.id}">Delete</button></td>
+            <td><button class="update-btn" data-id"${appt.id}">Edit</button></td>
         
         </tr>`
 
@@ -88,5 +89,17 @@ listOfTable.addEventListener("click", (event) => {
 }
 });
 
+const modal = document.getElementById("container-modal-popup");
 
+listOfTable.addEventListener("click", (event) => {
+    if(event.target.classList.contains('update-btn')){
+        const update = Number(event.target.dataset.id);
+        const everyIndex = appointments.findIndex(appt => appt.id === update);
+        if(everyIndex){
+            return modal.style.display = "block";
+
+        }
+
+    }
+})
 
