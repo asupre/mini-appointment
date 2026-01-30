@@ -100,6 +100,27 @@ const modalId = document.getElementById("modalID");
 const modalName =document.getElementById("modalName");
 const modalStatus = document.getElementById("modalStatus");
 const saveBtn = document.getElementById("saveBtn");
+const allInOne = modalId + modalName + modalStatus + saveBtn;
+
+function addModalPatient(){
+    const theValueOfEverything = allInOne.value.trim();
+
+    if(theValueOfEverything === ""){
+        return alert("Please enter what is required!")
+    }
+
+    const newDataPatient = {
+        id: appointments.length + 1,
+        patient: inputValue,
+        status: status.value
+    }
+
+    appointments.push(newDataPatient);
+
+    data();
+
+    renderTheAppointment();
+}
 
 
 
@@ -109,7 +130,7 @@ listOfTable.addEventListener("click", (event) => {
         const everyIndex = appointments.findIndex(appt => appt.id === update);
         if(everyIndex){
             return modal.style.display = "block";
-            
+
         }
 
     }
