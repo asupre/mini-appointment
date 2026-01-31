@@ -103,6 +103,7 @@ const modal = document.getElementById("container-modal-popup");
 const modalName = document.getElementById("modalName");
 const modalStatus = document.getElementById("modalStatus");
 const saveBtn = document.getElementById("saveBtn");
+const cencelBtn = document.getElementById("cancelBtn");
 
 
 function addModalPatient(){
@@ -164,3 +165,5 @@ modalName.addEventListener("keydown", (event) =>{
         addModalPatient();
     };
 });
+
+cancelBtn.addEventListener("click", (event) => {modal.style.display = "none"});
