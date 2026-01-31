@@ -12,7 +12,7 @@ function renderTheAppointment(){
             <td>${appt.patient}</td>
             <td>${appt.status}</td>
             <td><button class="delete-btn" data-id="${appt.id}">Delete</button></td>
-            <td><button class="update-btn" data-id"${appt.id}">Edit</button></td>
+            <td><button class="update-btn" data-id="${appt.id}">Edit</button></td>
         
         </tr>`
 
@@ -94,48 +94,73 @@ listOfTable.addEventListener("click", (event) => {
 
 /*OPEN MODAL LOGIC AREA */
 
+
+/*Getting the modal information and storing it in the function */
+
 const modal = document.getElementById("container-modal-popup");
 
-const modalId = document.getElementById("modalID");
-const modalName =document.getElementById("modalName");
+
+const modalName = document.getElementById("modalName");
 const modalStatus = document.getElementById("modalStatus");
 const saveBtn = document.getElementById("saveBtn");
-const allInOne = modalId + modalName + modalStatus + saveBtn;
+
 
 function addModalPatient(){
-    const theValueOfEverything = allInOne.value.trim();
+    const theValueOfEverything = modalName.value;
 
     if(theValueOfEverything === ""){
         return alert("Please enter what is required!")
     }
 
-    const newDataPatient = {
-        id: appointments.length + 1,
-        patient: inputValue,
-        status: status.value
+    const patientIndex = appointments.findIndex(appt => appt.id === currentlyEditingId);
+    
+    if(patientIndex > -1){
+        appointments[patientIndex].patient = modalName.value;
+        appointments[patientIndex].status = modalStatus.value;
     }
 
-    appointments.push(newDataPatient);
+    
 
     data();
 
     renderTheAppointment();
+
+    modal.style.display = "none";
+
+    currentlyEditingId = null;
 }
+/*End of the function */
 
 
+/*Edit button logic */
+
+let currentlyEditingId = null;
 
 listOfTable.addEventListener("click", (event) => {
     if(event.target.classList.contains('update-btn')){
         const update = Number(event.target.dataset.id);
-        const everyIndex = appointments.findIndex(appt => appt.id === update);
-        if(everyIndex){
-            return modal.style.display = "block";
+        const patient = appointments.find(appt => appt.id === update);
+        if(patient){
+            currentlyEditingId = update;
+            modalName.value = patient.patient
+            modalStatus.value = patient.status
+
+            modal.style.display = "block";
 
         }
 
     }
 });
+/*End of edit button logic */
 
 
+saveBtn.addEventListener("click", (event) => {
+    addModalPatient();
+});
 
 
+modalName.addEventListener("keydown", (event) =>{
+    if(event.key === "Enter"){
+        addModalPatient();
+    };
+});

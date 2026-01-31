@@ -45,12 +45,15 @@
       <h2 class="appt-modal-head">APPT MODAL</h2>
 
     <div class="input-modal">
-        <label for="">ID:</label>
-        <input type="number" placeholder="Enter new ID" id="modalID">
+        
         <label for="">Name:</label>
         <input type="text" placeholder="Enter new name" id="modalName">
         <label for="">Status:</label>
-        <input type="text" placeholder="Enter new status"id="modalStatus">
+        <select id="modalStatus">
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
          <button id="saveBtn">Save</button>
          <button id="cancelBtn">Cancel</button>
     </div>
