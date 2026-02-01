@@ -11,6 +11,7 @@ function renderTheAppointment(){
             <td>${appt.id}</td>
             <td>${appt.patient}</td>
             <td>${appt.status}</td>
+            <td>${appt.price}</td>
             <td><button class="delete-btn" data-id="${appt.id}">Delete</button></td>
             <td><button class="update-btn" data-id="${appt.id}">Edit</button></td>
         
@@ -19,6 +20,7 @@ function renderTheAppointment(){
         
     });
 
+  
     listOfTable.innerHTML = rows.join("");
   
 };
@@ -103,7 +105,7 @@ const modal = document.getElementById("container-modal-popup");
 const modalName = document.getElementById("modalName");
 const modalStatus = document.getElementById("modalStatus");
 const saveBtn = document.getElementById("saveBtn");
-const cencelBtn = document.getElementById("cancelBtn");
+const cancelBtn = document.getElementById("cancelBtn");
 
 
 function addModalPatient(){
@@ -155,7 +157,7 @@ listOfTable.addEventListener("click", (event) => {
 /*End of edit button logic */
 
 
-saveBtn.addEventListener("click", (event) => {
+saveBtn.addEventListener("click", () => {
     addModalPatient();
 });
 
@@ -166,4 +168,32 @@ modalName.addEventListener("keydown", (event) =>{
     };
 });
 
-cancelBtn.addEventListener("click", (event) => {modal.style.display = "none"});
+cancelBtn.addEventListener("click", () => {modal.style.display = "none"});
+
+
+/*END OF EDIT MODAL*/
+
+/*START OF FILTERLING THE NAMES OF PATIENTS */
+
+const searchPatient = document.getElementById("search-patient");
+const searchBtn = document.getElementById("searchBtn");
+
+function searching(searchP){
+
+    const patientValue = searchPatient.value
+    if(patientValue.value === searchP.patient){
+        return `<tr>
+             <td>${searchP.id}</td>
+            <td>${searchP.patient}</td>
+             <td>${searchP.status}</td>
+              <td>${searchP.price}</td>
+        
+        </tr>`
+    }
+};
+
+searchBtn.addEventListener("click", () =>{
+    searching();
+})
+
+

@@ -1,9 +1,9 @@
 
 
  const defaultData = [
-    {id: 1, patient: "Coy", status: "Pending"},
-    {id: 2, patient: "Ana", status: "Paid"},
-    {id: 3, patient: "Louis", status: "Pending"}
+    {id: 1, patient: "Coy", status: "Pending", price:""},
+    {id: 2, patient: "Ana", status: "Paid", price:""},
+    {id: 3, patient: "Louis", status: "Pending", price:""}
    
 ];
 
