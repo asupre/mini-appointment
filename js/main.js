@@ -4,9 +4,9 @@ import { data, appointments } from "./db.js";
 /*READ AREA */
 const listOfTable = document.getElementById('appointment-list');
 
-function renderTheAppointment(){
+function renderTheAppointment(list = appointments){
     
-    const rows = appointments.map((appt) => {
+    const rows = list.map((appt) => {
         return `<tr>
             <td>${appt.id}</td>
             <td>${appt.patient}</td>
@@ -175,25 +175,14 @@ cancelBtn.addEventListener("click", () => {modal.style.display = "none"});
 
 /*START OF FILTERLING THE NAMES OF PATIENTS */
 
-const searchPatient = document.getElementById("search-patient");
-const searchBtn = document.getElementById("searchBtn");
+const searchPatient = document.getElementById("searchPatient");
 
-function searching(searchP){
+searchPatient.addEventListener("keyup", (event) =>{
+    const searchText = event.target.value.toLowerCase();
 
-    const patientValue = searchPatient.value
-    if(patientValue.value === searchP.patient){
-        return `<tr>
-             <td>${searchP.id}</td>
-            <td>${searchP.patient}</td>
-             <td>${searchP.status}</td>
-              <td>${searchP.price}</td>
-        
-        </tr>`
-    }
-};
+    const filteredList = appointments.filter(appt => appt.patient.toLowerCase().includes(searchText));
 
-searchBtn.addEventListener("click", () =>{
-    searching();
-})
+    renderTheAppointment(filteredList);
+});
 
 
