@@ -3,6 +3,7 @@ import { data, appointments } from "./db.js";
 
 /*READ AREA */
 const listOfTable = document.getElementById('appointment-list');
+const totalPricesElement = document.getElementById("totalPrices");
 
 function renderTheAppointment(list = appointments){
     
@@ -22,10 +23,14 @@ function renderTheAppointment(list = appointments){
 
   
     listOfTable.innerHTML = rows.join("");
+
+    calculateTotalPrices(list); 
   
 };
 
 renderTheAppointment();
+
+
 
 /*END OF READ AREA */
 
@@ -43,8 +48,8 @@ function addPatient(){
     if(inputValue === ""){
         return alert("Please Enter a Name");
     }
-       if(priceInput === ""){
-        return alert("Please Enter a Name");
+       if(priceInput.value === ""){
+        return alert("Please Enter a Price");
     }
 
 
@@ -211,4 +216,17 @@ searchPatient.addEventListener("keyup", (event) =>{
 
 /*END OF FILTERING THE NAMES OF PATIENTS */
 
+
+function calculateTotalPrices(list){
+    const filteredPrices = list.filter((appt) => appt.status === "Paid");
+    const mappingPrices = filteredPrices.map((appt) => appt.price);
+
+    
+    const initialValue = 0;
+    const sumWithInitial = mappingPrices.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);
+
+    if(totalPricesElement){
+        totalPricesElement.innerText = `$${sumWithInitial}`;
+    }
+}
 
