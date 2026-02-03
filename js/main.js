@@ -52,7 +52,7 @@ function addPatient(){
         id: appointments.length + 1,
         patient: inputValue,
         status: status.value,
-        price: priceInput.value
+        price: Number(priceInput.value)
     }
 
     appointments.push(newAppointment);
@@ -61,6 +61,7 @@ function addPatient(){
     renderTheAppointment();
     
     inputElement.value = "";
+    priceInput.value = "";
     
 };
 
@@ -115,10 +116,10 @@ const modalPrice = document.getElementById("modalPrice");
 
 
 function addModalPatient(){
-    const theValueOfEverything = modalName.value;
-    const thePriceValue = modalPrice.value;
+    const theValueOfEverything = modalName.value + modalPrice.value;
+    
 
-    if(theValueOfEverything && thePriceValue === ""){
+    if(theValueOfEverything === ""){
         return alert("Please enter what is required!")
     }
 
@@ -127,7 +128,7 @@ function addModalPatient(){
     if(patientIndex > -1){
         appointments[patientIndex].patient = modalName.value;
         appointments[patientIndex].status = modalStatus.value;
-        appointments[patientIndex].price = modalPrice.value;
+        appointments[patientIndex].price = Number(modalPrice.value);
     }
 
     
@@ -135,10 +136,14 @@ function addModalPatient(){
     data();
 
     renderTheAppointment();
+   
+    modalPrice.value = "";
 
     modal.style.display = "none";
 
     currentlyEditingId = null;
+
+    
 }
 /*End of the function */
 
@@ -155,11 +160,12 @@ listOfTable.addEventListener("click", (event) => {
             currentlyEditingId = update;
             modalName.value = patient.patient
             modalStatus.value = patient.status
+            modalPrice.value = patient.price
 
             modal.style.display = "block";
 
         }
-
+        modalPrice.value = "";
     }
 });
 /*End of edit button logic */
@@ -167,10 +173,21 @@ listOfTable.addEventListener("click", (event) => {
 
 saveBtn.addEventListener("click", () => {
     addModalPatient();
+    
 });
 
 
 modalName.addEventListener("keydown", (event) =>{
+    if(event.key === "Enter"){
+        addModalPatient();
+    };
+});
+modalPrice.addEventListener("keydown", (event) =>{
+    if(event.key === "Enter"){
+        addModalPatient();
+    };
+});
+modalStatus.addEventListener("keydown", (event) =>{
     if(event.key === "Enter"){
         addModalPatient();
     };
@@ -192,5 +209,7 @@ searchPatient.addEventListener("keyup", (event) =>{
 
     renderTheAppointment(filteredList);
 });
+
+/*END OF FILTERING THE NAMES OF PATIENTS */
 
 
