@@ -34,20 +34,25 @@ renderTheAppointment();
 const inputElement = document.getElementById('patientName');
 const status = document.getElementById('patientStatus');
 const btn = document.getElementById('addBtn');
-
+const priceInput = document.getElementById('patientPrice');
 
 function addPatient(){
     const inputValue = inputElement.value ;
 
+
     if(inputValue === ""){
         return alert("Please Enter a Name");
     }
+       if(priceInput === ""){
+        return alert("Please Enter a Name");
+    }
+
 
     const newAppointment = {
         id: appointments.length + 1,
         patient: inputValue,
-        status: status.value
-
+        status: status.value,
+        price: priceInput.value
     }
 
     appointments.push(newAppointment);
@@ -106,12 +111,14 @@ const modalName = document.getElementById("modalName");
 const modalStatus = document.getElementById("modalStatus");
 const saveBtn = document.getElementById("saveBtn");
 const cancelBtn = document.getElementById("cancelBtn");
+const modalPrice = document.getElementById("modalPrice");
 
 
 function addModalPatient(){
     const theValueOfEverything = modalName.value;
+    const thePriceValue = modalPrice.value;
 
-    if(theValueOfEverything === ""){
+    if(theValueOfEverything && thePriceValue === ""){
         return alert("Please enter what is required!")
     }
 
@@ -120,6 +127,7 @@ function addModalPatient(){
     if(patientIndex > -1){
         appointments[patientIndex].patient = modalName.value;
         appointments[patientIndex].status = modalStatus.value;
+        appointments[patientIndex].price = modalPrice.value;
     }
 
     
