@@ -116,7 +116,7 @@ const modalPrice = document.getElementById("modalPrice");
 
 
 function addModalPatient(){
-    const theValueOfEverything = modalName.value + modalPrice.value;
+    const theValueOfEverything = modalName.value + Number(modalPrice.value);
     
 
     if(theValueOfEverything === ""){
@@ -136,8 +136,7 @@ function addModalPatient(){
     data();
 
     renderTheAppointment();
-   
-    modalPrice.value = "";
+    
 
     modal.style.display = "none";
 
@@ -165,7 +164,7 @@ listOfTable.addEventListener("click", (event) => {
             modal.style.display = "block";
 
         }
-        modalPrice.value = "";
+     
     }
 });
 /*End of edit button logic */
